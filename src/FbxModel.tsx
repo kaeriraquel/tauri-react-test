@@ -1,18 +1,19 @@
-import { Center, useGLTF } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
-import { TextureLoader, MeshStandardMaterial } from "three";
+import { useEffect } from "react";
+import { Center, useAnimations, useGLTF } from "@react-three/drei";
 
 export default function Model() {
-  const model = useGLTF("/models/test.glb");
-  const texture = useLoader(TextureLoader, "/textures/texturaEnd.png");
+  const model = useGLTF("/textures/animtest.glb");
 
-  model.scene.traverse((child: any) => {
-    if (child.isMesh) {
-      child.material = new MeshStandardMaterial({
-        map: texture,
-      });
+  const { actions, names } = useAnimations(
+    model.animations,
+    model.scene
+  );
+
+  useEffect(() => {
+    if (names.length > 0) {
+      actions[names[0]]?.reset().play();
     }
-  });
+  }, [actions, names]);
 
   return (
     <Center>

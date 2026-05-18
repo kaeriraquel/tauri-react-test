@@ -18,7 +18,7 @@ import { GridHelper } from "three";
 export default function App() {
   return (
     <div className="container">
-      <h1>PRUEBA PARA ASSEMBLY CHICLE BOMBA FBX</h1>
+      <h1>ASSEMBLY FBX TO GLB</h1>
 
       <div className="viewer">
         <Canvas camera={{ position: [0, 10, 20] }}>
